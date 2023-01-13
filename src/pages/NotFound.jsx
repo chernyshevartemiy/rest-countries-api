@@ -5,3 +5,4 @@ export const NotFound = () => {
     <div>This page doesn't exist</div>
   )
 }
+

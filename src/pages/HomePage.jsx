@@ -6,15 +6,17 @@ import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
 
 export const HomePage = ({ countries, setCountries }) => {
-  const [filteredCountries, setFiltredCountries] = React.useState(countries);
-  console.log(filteredCountries);
+  const [filteredCountries, setFilteredCountries] = React.useState(countries);
   const handleSearch = (query) => {
-    let data = [...countries];
     if (query) {
-      data = countries.filter((c) =>
-        c.name.toLowerCase().includes(query.toLowerCase().trim())
+      setFilteredCountries(
+        countries.filter((c) =>
+          c.name.toLowerCase().includes(query.toLowerCase())
+        )
       );
-      setFiltredCountries(data);
+    }
+    if (!query) {
+      setFilteredCountries(countries);
     }
   };
   React.useEffect(() => {
@@ -24,13 +26,10 @@ export const HomePage = ({ countries, setCountries }) => {
       });
     }
   }, []);
-  React.useEffect(() => {
-    handleSearch();
-    console.log(countries);
-  }, [countries]);
+
   return (
     <>
-      <Controls onSearch={handleSearch} />
+      <Controls countries={countries} onSearch={handleSearch} />
       <List>
         {filteredCountries.map((c) => {
           const countryInfo = {

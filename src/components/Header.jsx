@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Container } from './Container';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -15,14 +16,6 @@ const Wrapper = styled.div`
   padding: 2rem 0;
 `;
 
-const Title = styled.a.attrs({
-  href: '/',
-})`
-  color: var(--colors-text);
-  font-size: var(--fs-md);
-  text-decoration: none;
-  font-weight: var(--fw-bold);
-`;
 const ModeSwitcher = styled.div`
   display: flex;
   align-items: center;
@@ -33,7 +26,7 @@ const ModeSwitcher = styled.div`
 `;
 
 export const Header = () => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState('dark');
   const toogleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
@@ -48,7 +41,17 @@ export const Header = () => {
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Where is the World?</Title>
+          <Link
+            to={'/'}
+            style={{
+              color: 'var(--colors-text)',
+              textDecoration: 'none',
+              fontSize: 'var(--fs-md)',
+              fontWeight: 'var(--fw-bold)',
+            }}
+          >
+            Where is the World?
+          </Link>
           <ModeSwitcher onClick={toogleTheme}>
             {theme === 'light' ? <IoMoon /> : <IoMoonOutline />}
             {getThemeName()} theme

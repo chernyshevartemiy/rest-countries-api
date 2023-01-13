@@ -15,7 +15,6 @@ const CardImage = styled.img`
   height: 160px;
   object-fit: cover;
   object-position: center;
-  box-shadow: var(--shadow);
 `;
 
 const CardBody = styled.div`
@@ -49,7 +48,7 @@ const CardListItem = styled.li`
 export const Card = ({ img, name, info = [], onClick }) => {
   return (
     <Wrapper onClick={onClick}>
-      <Link to={`country/${name.split(' ').join('-').toLowerCase()}`}>
+      <Link to={`country/${name.split(' ').join('-')}`}>
         <CardImage src={img} alt={name} />
       </Link>
       <CardBody>
