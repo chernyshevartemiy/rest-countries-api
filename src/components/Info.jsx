@@ -30,7 +30,7 @@ const InfoImage = styled.img`
     width: 440px;
   }
   @media (min-width: 1024px) {
-    width: 500px;
+    min-width: 500px;
   }
 `;
 
